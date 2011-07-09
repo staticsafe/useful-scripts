@@ -1,4 +1,6 @@
 #!/bin/bash
+# Creates a image from a single frame of a video file
+
 if [ $# != 1 ]; then
         echo "Usage: mkcvr <path to file>"
         exit
