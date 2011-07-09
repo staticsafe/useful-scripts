@@ -1,0 +1,33 @@
+#!/bin/bash
+# written by staticsafe, ze, jayms and ckpro
+
+#installation
+cd $HOME
+mkdir bin
+echo "export PATH=$HOME/bin:$PATH" >> $HOME/.bashrc
+arch="$(uname -m)"
+case "$arch" in
+  i686|i586) wget -O mtn http://dl.dropbox.com/u/34659045/mtn-32 ;;
+  x86_64) wget -O mtn http://dl.dropbox.com/u/34659045/mtn-64 ;;
+  *) printf "Unknown arch \"$arch\", aborting.\n">/dev/stderr ; exit 1 ;;
+esac
+chmod +x mtn
+mv mtn $HOME/bin
+
+# Get font
+cd $HOME
+wget http://fractal.csie.org/~eric/Terminus.ttf # Downloads font file
+
+# Create mkscr bash script
+cat >mkscr <<EOF
+#!/bin/bash
+while [ $# -gt 0 ]; do
+  mtn -f ~/Terminus.ttf -c 4 -r 8 -w 1280 -b 0.6 -D6 -T "Screens for hey.fux0r.eu" "$1"
+  shift
+done
+EOF
+
+chmod +x mkscr
+mv mkscr $HOME/bin
+
+printf "\033[31m Done. Happy screenshotting! \033[0m\n"
