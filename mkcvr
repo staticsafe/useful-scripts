@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# != 1 ]; then
+        echo "Usage: mkcvr <path to file>"
+        exit
+fi
+
+if [ ! -f "$1" ]; then
+        echo "That is not a valid file name"
+        exit
+fi
+
+ffmpeg -ss 300 -i "$1" -y -f image2 -sameq -t 0.001 "`pwd`/`dirname $1`/Cover.p$
