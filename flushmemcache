@@ -5,22 +5,21 @@
 
 LOLCACHE="memcached"
 
-APPCHK=$(ps aux | grep -c $LOLCACHE)
+APPCHK=$(ps aux | grep -c memcached)
 
 #Flushes the cache if memcached is running
 
-if [ $APPCHK = '0' ];
+if [ $APPCHK = "1" ];
 
 then
 
-echo "Um, Memcached doesn't seem to be running."
+echo "Memcached is not running!"
 
 else
 
 echo "flush_all" | nc -w 3 localhost 11211
+echo "Memcached cache is flushed! :)"
 
 fi
-
-echo "Memcached cache is flushed! :)"
 
 exit
