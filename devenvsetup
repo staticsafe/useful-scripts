@@ -1,10 +1,15 @@
 #!/bin/bash
 #Sets up a fully working development environment for myself on Debian based systems
 
+die() {
+printf '%s\n' "$@" >&2
+exit 1
+}
+
 #Setup SCM
 
 if [[ "$(whoami)" != "root" ]]; then
-	sudo -p "Enter your admin password: " apt-get install git git-core subversion
+	sudo apt-get install git git-core subversion
 	sudo -k
 else
 	apt-get install git git-core subversion
@@ -14,9 +19,26 @@ fi
 
 cd $HOME
 if [[ ! -e .vimrc ]]; then
-	wget -O .vimrc http://dl.dropbox.com/u/2888062/vimrc
+	wget -O .vimrc http://dl.dropbox.com/u/2888062/vimrc || die 'failed to download .vimrc.' 
 else
 	printf '%s\n' 'You already have a .vimrc, doing nothing for this step.'
 fi
+
+#Dev directories (feel free to change this for your convenience
+
+
+
+#Caffeine Linux repo stuff
+
+wget -O caffeine.asc http://foxwolfblood.me/repo/pubkey || die 'failed to download caffeine.gpg'
+sudo apt-key add caffeine.asc
+cp /etc/apt/sources.list $HOME/sources.list
+sudo chmod 777 $HOME/sources.list
+echo 'deb http://foxwolfblood.me/repo alpha caffeine' >> $HOME/sources.list
+sudo mv $HOME/sources.list /etc/apt/sources.list
+sudo chmod 644 /etc/apt/sources.list
+sudo chown root:root /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install caffeinelinux-developer
 
 exit
