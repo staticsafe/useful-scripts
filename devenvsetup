@@ -1,0 +1,22 @@
+#!/bin/bash
+#Sets up a fully working development environment for myself on Debian based systems
+
+#Setup SCM
+
+if [[ "$(whoami)" != "root" ]]; then
+	sudo -p "Enter your admin password: " apt-get install git git-core subversion
+	sudo -k
+else
+	apt-get install git git-core subversion
+fi
+
+#Setup editors
+
+cd $HOME
+if [[ ! -e .vimrc ]]; then
+	wget -O .vimrc http://dl.dropbox.com/u/2888062/vimrc
+else
+	printf '%s\n' 'You already have a .vimrc, doing nothing for this step.'
+fi
+
+exit
