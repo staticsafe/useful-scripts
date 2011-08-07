@@ -1,5 +1,5 @@
 #!/bin/bash
-#Sets up a fully working development environment for myself on Debian based systems
+#Sets up a fully working development environment for Caffeine Linux developers on Debian based systems
 
 die() {
 printf '%s\n' "$@" >&2
@@ -9,13 +9,16 @@ exit 1
 #Setup SCM
 
 if [[ "$(whoami)" != "root" ]]; then
-	sudo apt-get install git git-core subversion
+	sudo apt-get install git git-core subversion 
 	sudo -k
 else
 	apt-get install git git-core subversion
 fi
 
 #Setup editors
+#vim is just an example, feel free to use your editor of choice, this script was written in Geany.
+
+sudo apt-get install vim
 
 cd $HOME
 if [[ ! -e .vimrc ]]; then
@@ -24,7 +27,18 @@ else
 	printf '%s\n' 'You already have a .vimrc, doing nothing for this step.'
 fi
 
-#Dev directories (feel free to change this for your convenience
+#Setup dev directories (feel free to change/remove this for your convenience)
+
+cd $HOME
+
+if [[ ! -d dev ]]; then
+	mkdir dev
+	cd ./dev
+	svn co https://caffeine-linux.svn.sourceforge.net/svnroot/caffeine-linux caffeine-linux 
+else
+	cd ./dev
+	svn co https://caffeine-linux.svn.sourceforge.net/svnroot/caffeine-linux caffeine-linux
+fi 
 
 
 
@@ -40,5 +54,6 @@ sudo chmod 644 /etc/apt/sources.list
 sudo chown root:root /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get install caffeinelinux-developer
+sudo -k
 
 exit
