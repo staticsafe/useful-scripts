@@ -5,11 +5,11 @@
 
 LOLCACHE="memcached"
 
-APPCHK=$(ps aux | grep -c memcached)
+APPCHK=$(pidof memcached)
 
 #Flushes the cache if memcached is running
 
-if [ $APPCHK = "1" ];
+if [ -z "$APPCHK" ];
 
 then
 
