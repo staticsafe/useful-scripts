@@ -6,19 +6,22 @@ printf '%s\n' "$@" >&2
 exit 1
 }
 
-#Setup SCM
+#Caffeine Linux repo stuff (installs all dev related stuff like svn, git etc.)
 
-if [[ "$(whoami)" != "root" ]]; then
-	sudo apt-get install git git-core subversion 
-	sudo -k
-else
-	apt-get install git git-core subversion
-fi
+wget -O caffeine.asc http://foxwolfblood.me/repo/pubkey || die 'failed to download caffeine.gpg'
+sudo apt-key add caffeine.asc
+cp /etc/apt/sources.list $HOME/sources.list
+sudo chmod 777 $HOME/sources.list
+echo 'deb http://foxwolfblood.me/repo alpha caffeine' >> $HOME/sources.list
+sudo mv $HOME/sources.list /etc/apt/sources.list
+sudo chmod 644 /etc/apt/sources.list
+sudo chown root:root /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install caffeinelinux-developer
+sudo -k
 
 #Setup editors
 #vim is just an example, feel free to use your editor of choice, this script was written in Geany.
-
-sudo apt-get install vim
 
 cd $HOME
 if [[ ! -e .vimrc ]]; then
@@ -39,21 +42,5 @@ else
 	cd ./dev
 	svn co https://caffeine-linux.svn.sourceforge.net/svnroot/caffeine-linux caffeine-linux
 fi 
-
-
-
-#Caffeine Linux repo stuff
-
-wget -O caffeine.asc http://foxwolfblood.me/repo/pubkey || die 'failed to download caffeine.gpg'
-sudo apt-key add caffeine.asc
-cp /etc/apt/sources.list $HOME/sources.list
-sudo chmod 777 $HOME/sources.list
-echo 'deb http://foxwolfblood.me/repo alpha caffeine' >> $HOME/sources.list
-sudo mv $HOME/sources.list /etc/apt/sources.list
-sudo chmod 644 /etc/apt/sources.list
-sudo chown root:root /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get install caffeinelinux-developer
-sudo -k
 
 exit
