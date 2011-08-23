@@ -1,25 +1,10 @@
 #!/bin/bash
 #Small script to flush Memcached
 
-#Check if memcached is running
 
-LOLCACHE="memcached"
-
-APPCHK=$(pidof memcached)
-
-#Flushes the cache if memcached is running
-
-if [ -z "$APPCHK" ];
-
-then
-
-echo "Memcached is not running!"
-
+if pgrep memcached &> /dev/null; then
+    printf '%s\n' 'Memcached is not running!'
 else
-
-echo "flush_all" | nc -w 3 localhost 11211
-echo "Memcached cache is flushed! :)"
-
+    nc -w 3 localhost 11211 <<< flush_all
+    printf '%s\n' 'Memcached cache was flushed! :)'
 fi
-
-exit
