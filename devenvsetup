@@ -8,7 +8,7 @@ exit 1
 
 #Caffeine Linux repo stuff (installs all dev related stuff like svn, git etc.)
 
-wget -O caffeine.asc http://foxwolfblood.me/repo/pubkey || die 'failed to download caffeine.gpg'
+wget -O caffeine.asc http://foxwolfblood.me/repo/pubkey || die 'failed to download caffeine.asc'
 sudo apt-key add caffeine.asc
 cp /etc/apt/sources.list $HOME/sources.list
 sudo chmod 777 $HOME/sources.list
