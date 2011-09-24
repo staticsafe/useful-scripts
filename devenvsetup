@@ -17,7 +17,7 @@ sudo mv $HOME/sources.list /etc/apt/sources.list
 sudo chmod 644 /etc/apt/sources.list
 sudo chown root:root /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get install caffeinelinux-developer
+sudo apt-get install caffeinelinux-developer subversion #the caffeinelinux-developer package does NOT install svn
 sudo -k
 
 #Setup editors
