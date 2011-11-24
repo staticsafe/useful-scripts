@@ -1,12 +1,23 @@
 ﻿#!/bin/bash
 #Sets up LAMP on a Debian based server
 
-#Update repos and check for any update
+#a die function as always
+die() {
+printf '%s\n' "$@" >&2
+exit 1
+}
+
+#Update repos and check for any update(s)
 
 sudo apt-get update
 sudo apt-get upgrade
 
-#Install LAMP packages
+#Choose webserver
+printf '%s\n' 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, Cherokee'
+read webserver
+
+
+#Install webserver packages
 
 printf '%s\n' 'Installing LAMP packages now'
 
