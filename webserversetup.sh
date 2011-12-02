@@ -1,5 +1,5 @@
 ﻿#!/bin/bash
-#Sets up LAMP on a Debian based server
+#Sets up webserver on a Debian based server
 
 #a die function as always
 die() {
@@ -35,3 +35,5 @@ printf '%s\n' 'All LAMP packages have been now installed. Look in /etc/apache2 f
 #printf '%s\n' 'You probably want phpmyadmin to manage your DBs from the web browser'
 
 #sudo apt-get install phpmyadmin
+
+#Webmin
