@@ -41,18 +41,4 @@ elif [["$webserver" =~ "Lighttpd" || "$webserver" =~ "lighttpd" ]]; then
 		printf '%s\n' 'Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd.'
 elif [["$webserver" =~ "cherokee" || "$webserver" =~ "Cherokee" ]]; then
 		printf '%s\n' 'Installing Cherokee based webserver now'
-
-
-
-
-
-
-printf '%s\n' 'All LAMP packages have been now installed. Look in /etc/apache2 for apache\'s config files.'
-
-#Optional Packages
-
-#printf '%s\n' 'You probably want phpmyadmin to manage your DBs from the web browser'
-
-#sudo apt-get install phpmyadmin
-
-#Webmin
+fi
