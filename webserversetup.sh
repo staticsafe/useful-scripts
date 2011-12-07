@@ -16,8 +16,8 @@ sudo apt-get upgrade
 printf '%s\n' 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, Cherokee'
 read webserver
 
-
 #Install webserver packages
+#Needs to be more user-friendly, add links to docs etc.
 
 if [[ "$webserver" ==  "Apache" || "$webserver" == "apache" ]]; then
 		printf '%s\n' 'Installing LAMP packages now'
@@ -33,6 +33,7 @@ elif [["$webserver" == "nginx" || "$webserver" == "Nginx" ]]; then
 		sudo /etc/init.d/mysql stop
 		sudo /etc/init.d/nginx stop
 		printf '%s\n' 'Look at http://goo.gl/tQBe7 for instructions on how to configure php-fastcgi'
+		printf '%s\n' 'Done! :)'
 elif [["$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
 		printf '%s\n' 'Installing lighttpd based webserver now'
 		sudo apt-get install lighttpd mysql-server mysql-client php5-mysql
@@ -40,6 +41,11 @@ elif [["$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
 		sudo /etc/init.d/mysql stop
 		sudo /etc/init.d/nginx stop
 		printf '%s\n' 'Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd.'
+		printf '%s\n' 'Done! :)'
 elif [["$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
 		printf '%s\n' 'Installing Cherokee based webserver now'
+		sudo apt-get install cherokee mysql-server mysql-client php5-mysql openssl
+		printf '%s\n' 'Done! :)'
+else
+		die 'Input webserver properly! Exiting now!'
 fi
