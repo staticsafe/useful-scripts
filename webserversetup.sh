@@ -19,14 +19,33 @@ read webserver
 
 #Install webserver packages
 
-printf '%s\n' 'Installing LAMP packages now'
+if [[ "$webserver" ==  "Apache" || "$webserver" == "apache" ]]; then
+		printf '%s\n' 'Installing LAMP packages now'
+		sudo apt-get install mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5
+		printf '%s\n' 'Stopping started LAMP services so you can configure them properly.'
+		sudo /etc/init.d/mysql stop
+		sudo /etc/init.d/apache2 stop
+elif [["$webserver" == "nginx" || "$webserver" == "Nginx" ]]; then
+		printf '%s\n' 'Installing nginx based webserver now'
+		sudo apt-get install nginx php5-cli php5-cgi spawn-fcgi mysql-server mysql-client php5-mysql
+		printf '%s\n' 'Stopping started services so you can configure them properly.'
+		sudo /etc/init.d/mysql stop
+		sudo /etc/init.d/nginx stop
+		printf '%s\n' 'Look at http://goo.gl/tQBe7 for instructions on how to configure php-fastcgi'
+elif [["$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
+		printf '%s\n' 'Installing lighttpd based webserver now'
+		sudo apt-get install lighttpd mysql-server mysql-client php5-mysql
+		printf '%s\n' 'Stopping started services so you can configure them properly.'
+		sudo /etc/init.d/mysql stop
+		sudo /etc/init.d/nginx stop
+		printf '%s\n' 'Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd.'
+elif [["$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
+		printf '%s\n' 'Installing Cherokee based webserver now'
 
-sudo apt-get install mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5
 
-printf '%s\n' 'Stopping started LAMP services so you can configure them properly.'
 
-sudo /etc/init.d/mysql stop
-sudo /etc/init.d/apache2 stop
+
+
 
 printf '%s\n' 'All LAMP packages have been now installed. Look in /etc/apache2 for apache\'s config files.'
 
