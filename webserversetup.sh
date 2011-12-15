@@ -37,7 +37,7 @@ if [[ "$webserver" ==  "Apache" || "$webserver" == "apache" ]]; then
 	/etc/init.d/mysql stop
 	/etc/init.d/apache2 stop
 	printf '%s\n' 'Done! :)'
-elif [["$webserver" == "nginx" || "$webserver" == "Nginx" ]]; then
+elif [[ "$webserver" == "nginx" || "$webserver" == "Nginx" ]]; then
 	printf '%s\n' 'Installing nginx based webserver now'
 	apt-get install nginx php5-cli php5-cgi spawn-fcgi mysql-server mysql-client php5-mysql
 	printf '%s\n' 'Stopping started services so you can configure them properly.'
@@ -45,7 +45,7 @@ elif [["$webserver" == "nginx" || "$webserver" == "Nginx" ]]; then
 	/etc/init.d/nginx stop
 	printf '%s\n' 'Look at http://goo.gl/tQBe7 for instructions on how to configure php-fastcgi'
 	printf '%s\n' 'Done! :)'
-elif [["$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
+elif [[ "$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
 	printf '%s\n' 'Installing lighttpd based webserver now'
 	apt-get install lighttpd mysql-server mysql-client php5-mysql
 	printf '%s\n' 'Stopping started services so you can configure them properly.'
@@ -53,7 +53,7 @@ elif [["$webserver" == "Lighttpd" || "$webserver" == "lighttpd" ]]; then
 	/etc/init.d/nginx stop
 	printf '%s\n' 'Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd.'
 	printf '%s\n' 'Done! :)'
-elif [["$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
+elif [[ "$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
 	printf '%s\n' 'Installing Cherokee based webserver now'
 	apt-get install cherokee mysql-server mysql-client php5-mysql openssl
 	printf '%s\n' 'Done! :)'
@@ -70,16 +70,16 @@ installcp(){
 printf '%s\n' 'Do you want to install a control panel (Webmin and.or phpmyAdmin)?'
 read cpinput
 
-if [["$cpinput" == "No" || "$cpinput" == "no" ]]; then
+if [[ "$cpinput" == "No" || "$cpinput" == "no" ]]; then
 	printf '%s\n' 'Alright then! Exiting'
 	exit
 elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
 	printf '%s\n' 'Do you want to install phpmyAdmin?'
 	read cppma
-		if [["$cppma" == "No" || "$cppma" == "no"]]; then
+		if [[ "$cppma" == "No" || "$cppma" == "no"]]; then
 			printf '%s\n' 'Alright, not installing phpmyAdmin.'
-		elif [["$cppma" == "Yes" || "$cppma" == "yes" ]]; then
+		elif [[ "$cppma" == "Yes" || "$cppma" == "yes" ]]; then
 			printf '%s\n' 'Installing phpmyAdmin!'
 			apt-get install phpmyadmin
 		else
@@ -88,10 +88,10 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#Webmin part
 	printf '%s\n' 'Do you want to install Webmin?'
 	read cpwebmin
-		if [["$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
+		if [[ "$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
 			printf '%s\n' 'Alright, not installing Webmin, exiting'
 			exit
-		elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes" ]]; then
+		elif [[ "$cpwebmin" == "Yes" || "$cpwebmin" == "yes" ]]; then
 			printf '%s\n' 'Installing Webmin!'
 			wget http://www.webmin.com/jcameron-key.asc
 			apt-key add jcameron-key.asc
