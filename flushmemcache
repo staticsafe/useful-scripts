@@ -3,8 +3,8 @@
 
 
 if pgrep memcached &> /dev/null; then
-    printf '%s\n' 'Memcached is not running!'
-else
     nc -w 3 localhost 11211 <<< flush_all
     printf '%s\n' 'Memcached cache was flushed! :)'
+else
+    printf '%s\n' 'Memcached is not running!'
 fi
