@@ -77,31 +77,31 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
 	printf '%s\n' 'Do you want to install phpmyAdmin? (Yes/No)'
 	read cppma
-	if [["$cppma" == "No" || "$cppma" == "no"]]; then
-		printf '%s\n' 'Alright, not installing phpmyAdmin.'
-	elif [["$cppma" == "Yes" || "$cppma" == "yes" ]]; then
-		printf '%s\n' 'Installing phpmyAdmin!'
-		apt-get install phpmyadmin
-	else
-		installcp
-	fi
+		if [["$cppma" == "No" || "$cppma" == "no"]]; then
+			printf '%s\n' 'Alright, not installing phpmyAdmin.'
+		elif [["$cppma" == "Yes" || "$cppma" == "yes" ]]; then
+			printf '%s\n' 'Installing phpmyAdmin!'
+			apt-get install phpmyadmin
+		else
+			installcp
+		fi
 	#Webmin part
 	printf '%s\n' 'Do you want to install Webmin? (Yes/No)'
 	read cpwebmin
-	if [["$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
-		printf '%s\n' 'Alright, not installing Webmin, exiting'
-		exit
-	elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes" ]]; then
-		printf '%s\n' 'Installing Webmin!'
-		wget http://www.webmin.com/jcameron-key.asc
-		apt-key add jcameron-key.asc
-		printf '%s\n' 'Adding Webmin APT repo to sources.list'
-		echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list
-		apt-get update
-		apt-get install webmin
-	else
-		installcp
-	fi
+		if [["$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
+			printf '%s\n' 'Alright, not installing Webmin, exiting'
+			exit
+		elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes" ]]; then
+			printf '%s\n' 'Installing Webmin!'
+			wget http://www.webmin.com/jcameron-key.asc
+			apt-key add jcameron-key.asc
+			printf '%s\n' 'Adding Webmin APT repo to sources.list'
+			echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list
+			apt-get update
+			apt-get install webmin
+		else
+			installcp
+		fi
 else
 	installcp
 fi
