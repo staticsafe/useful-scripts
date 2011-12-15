@@ -70,16 +70,16 @@ installcp(){
 printf '%s\n' 'Do you want to install a control panel (Webmin and/or phpmyAdmin)? (Yes/No)'
 read cpinput
 
-if [["$cpinput" == "No" || "$cpinput" == "no"]]; then
+if [["$cpinput" == "No" || "$cpinput" == "no" ]]; then
 	printf '%s\n' 'Alright then! Exiting'
 	exit
-elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
+elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
 	printf '%s\n' 'Do you want to install phpmyAdmin? (Yes/No)'
 	read cppma
 	if [["$cppma" == "No" || "$cppma" == "no"]]; then
 		printf '%s\n' 'Alright, not installing phpmyAdmin.'
-	elif [["$cppma" == "Yes" || "$cppma" == "yes"]]; then
+	elif [["$cppma" == "Yes" || "$cppma" == "yes" ]]; then
 		printf '%s\n' 'Installing phpmyAdmin!'
 		apt-get install phpmyadmin
 	else
@@ -88,10 +88,10 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 	#Webmin part
 	printf '%s\n' 'Do you want to install Webmin? (Yes/No)'
 	read cpwebmin
-	if [["$cpwebmin" == "No" || "$cpwebmin" == "no"]]; then
+	if [["$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
 		printf '%s\n' 'Alright, not installing Webmin, exiting'
 		exit
-	elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes"]]; then
+	elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes" ]]; then
 		printf '%s\n' 'Installing Webmin!'
 		wget http://www.webmin.com/jcameron-key.asc
 		apt-key add jcameron-key.asc
