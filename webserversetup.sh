@@ -67,7 +67,7 @@ fi
 #Control Panels
 
 installcp(){
-printf '%s\n' 'Do you want to install a control panel (Webmin and/or phpmyAdmin)? (Yes/No)'
+printf '%s\n' 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
 read cpinput
 
 if [["$cpinput" == "No" || "$cpinput" == "no" ]]; then
@@ -75,7 +75,7 @@ if [["$cpinput" == "No" || "$cpinput" == "no" ]]; then
 	exit
 elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
-	printf '%s\n' 'Do you want to install phpmyAdmin? (Yes/No)'
+	printf '%s\n' 'Do you want to install phpmyAdmin?'
 	read cppma
 		if [["$cppma" == "No" || "$cppma" == "no"]]; then
 			printf '%s\n' 'Alright, not installing phpmyAdmin.'
@@ -86,7 +86,7 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 			installcp
 		fi
 	#Webmin part
-	printf '%s\n' 'Do you want to install Webmin? (Yes/No)'
+	printf '%s\n' 'Do you want to install Webmin?'
 	read cpwebmin
 		if [["$cpwebmin" == "No" || "$cpwebmin" == "no" ]]; then
 			printf '%s\n' 'Alright, not installing Webmin, exiting'
