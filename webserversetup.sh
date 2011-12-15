@@ -73,7 +73,7 @@ read cpinput
 if [[ "$cpinput" == "No" || "$cpinput" == "no" ]]; then
 	printf '%s\n' 'Alright then! Exiting'
 	exit
-elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
+elif [[ "$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
 	printf '%s\n' 'Do you want to install phpmyAdmin?'
 	read cppma
