@@ -47,7 +47,7 @@ elif [["$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
 	sudo apt-get install cherokee mysql-server mysql-client php5-mysql openssl
 	printf '%s\n' 'Done! :)'
 else
-		die 'Input webserver properly! Exiting now!'
+	die 'Input webserver properly! Exiting now!'
 fi
 
 #Control Panels
