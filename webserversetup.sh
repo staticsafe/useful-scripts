@@ -77,7 +77,7 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes" ]]; then
 	#PMA part
 	printf '%s\n' 'Do you want to install phpmyAdmin?'
 	read cppma
-		if [[ "$cppma" == "No" || "$cppma" == "no"]]; then
+		if [[ "$cppma" == "No" || "$cppma" == "no" ]]; then
 			printf '%s\n' 'Alright, not installing phpmyAdmin.'
 		elif [[ "$cppma" == "Yes" || "$cppma" == "yes" ]]; then
 			printf '%s\n' 'Installing phpmyAdmin!'
