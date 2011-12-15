@@ -96,7 +96,7 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 		wget http://www.webmin.com/jcameron-key.asc
 		apt-key add jcameron-key.asc
 		printf '%s\n' 'Adding Webmin APT repo to sources.list'
-		echo 'deb http://download.webmin.com/download/repository sarge contrib' >> $HOME/sources.list
+		echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list
 		apt-get update
 		apt-get install webmin
 	else
