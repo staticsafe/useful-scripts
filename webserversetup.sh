@@ -89,6 +89,10 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 		sudo apt-get install webmin
 		sudo -k
 		# I realize this can be done in a better way, but meh I'll improve it later.
+	else
+		die 'Invalid input! Exiting now!'
 	fi
+else
+	die 'Invalid input! Exiting now!'
 fi
 
