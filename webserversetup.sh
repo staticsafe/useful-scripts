@@ -67,7 +67,7 @@ fi
 #Control Panels
 
 installcp(){
-printf '%s\n' 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
+printf '%s\n' 'Do you want to install a control panel (Webmin and.or phpmyAdmin)?'
 read cpinput
 
 if [["$cpinput" == "No" || "$cpinput" == "no" ]]; then
