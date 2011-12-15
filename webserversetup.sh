@@ -1,6 +1,11 @@
 ﻿#!/bin/bash
 #Sets up webserver on a Debian based server
 
+#Feature wishlist:
+#Ask user if he/she wants to install mysql/php or not for a minimal install [Priority = High]
+#Make a Fedora (yum) version [Priority = Low]
+
+
 #a die function as always
 die() {
 printf '%s\n' "$@" >&2
@@ -72,7 +77,7 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 	printf '%s\n' 'Do you want to install Webmin? (Yes/No)'
 	read cpwebmin
 	if [["$cpwebmin" == "No" || "$cpwebmin" == "no"]]; then
-		printf '%s\n' 'Alright, not installing webmin, exiting'
+		printf '%s\n' 'Alright, not installing Webmin, exiting'
 		exit
 	elif [["$cpwebmin" == "Yes" || "$cpwebmin" == "yes"]]; then
 		printf '%s\n' 'Installing Webmin!'
