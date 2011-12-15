@@ -17,13 +17,15 @@ exit 1
 sudo apt-get update
 sudo apt-get upgrade
 
-#Choose webserver
-printf '%s\n' 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, Cherokee'
-read webserver
+
 
 #Install webserver packages
 #Needs to be more user-friendly, add links to docs etc.
 
+installwebserver() {
+#Choose webserver
+printf '%s\n' 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, Cherokee'
+read webserver
 if [[ "$webserver" ==  "Apache" || "$webserver" == "apache" ]]; then
 	printf '%s\n' 'Installing LAMP packages now'
 	sudo apt-get install mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5
@@ -52,11 +54,15 @@ elif [["$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
 	sudo apt-get install cherokee mysql-server mysql-client php5-mysql openssl
 	printf '%s\n' 'Done! :)'
 else
-	die 'Input webserver properly! Exiting now!'
+	installwebserver
 fi
+}
+
+
 
 #Control Panels
 
+installcp(){
 printf '%s\n' 'Do you want to install a control panel (Webmin and/or phpmyAdmin)? (Yes/No)'
 read cpinput
 
@@ -72,6 +78,8 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 	elif [["$cppma" == "Yes" || "$cppma" == "yes"]]; then
 		printf '%s\n' 'Installing phpmyAdmin!'
 		sudo apt-get install phpmyadmin
+	else
+		installcp
 	fi
 	#Webmin part
 	printf '%s\n' 'Do you want to install Webmin? (Yes/No)'
@@ -95,9 +103,14 @@ elif [["$cpinput" == "Yes" || "$cpinput" == "Yes"]]; then
 		sudo -k
 		# I realize this can be done in a better way, but meh I'll improve it later.
 	else
-		die 'Invalid input! Exiting now!'
+		installcp
 	fi
 else
-	die 'Invalid input! Exiting now!'
+	installcp
 fi
+}
 
+#Calling functions
+
+installwebserver
+installcp
