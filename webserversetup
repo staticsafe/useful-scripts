@@ -74,7 +74,7 @@ installwebserverarch() {
 
 
 #Control Panels
-
+#Add support for other distros for this part as well
 installcp(){
 printf '%s\n' 'Do you want to install a control panel (Webmin and.or phpmyAdmin)?'
 read cpinput
@@ -123,6 +123,7 @@ elif [ -f /etc/debian_version ]; then
 	installwebserverdebian
 elif [ -f /etc/arch-release ]; then
 	installwebserverarch
+fi
 }
 
 installcp
