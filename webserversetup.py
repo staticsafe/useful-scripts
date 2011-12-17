@@ -8,9 +8,9 @@ import sys
 def main():
 #rootcheck
 uid = os.getuid()
-	if uid != 0:
-		print "This script must be run as root or sudo if you have it!"
-		sys.exit()
+if uid != 0:
+	print "This script must be run as root or sudo if you have it!"
+	sys.exit()
 #distrocheck
 if os.path.isfile(/etc/fedora-release) = True:
 	webserverfedora()
