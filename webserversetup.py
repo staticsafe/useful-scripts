@@ -81,6 +81,40 @@ def webserverarch():
 
 
 def installcpdebian():
+print "Do you want to install a control panel (Webmin and/or phpmyAdmin)?"
+prompt = ">"
+answer = raw_input(prompt)
+if answer == "No" or "no":
+	print "Alright then, exiting."
+	sys.exit()
+elif answer == "Yes" or "yes":
+	print "Do you want to install phpmyAdmin?"
+	promptpma = ">"
+	answerpma = raw_input(promptpma)
+	if answerpma == "Yes" or answerpma == "yes":
+		installcppma = call ("apt-get install --assume-yes phpmyadmin")
+	elif answerpma == "No" or answerpma == "no":
+		print "Alright then!"
+	else:
+		installcpdebian()
+	print "Do you want to install Webmin?"
+	promptwebmin ">"
+	answerwebmin = raw_input(promptwebmin)
+	if answerwebmin == "Yes" or answerwebmin "yes":
+		print "installing Webmin"
+		getkey = call ("wget http://www.webmin.com/jcameron-key.asc && apt-key add jcameron-key.asc")
+		print "Adding Webmin repo to sources list"
+		addsource = call ("echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list")
+		aptupdate = call ("apt-get update")
+		installwebmin = call ("apt-get install --assume-yes webmin")
+	elif answerwebmin == "No" or answerwebmin == "no":
+		print "Alright then, we are done here. Exiting."
+		sys.exit()
+	else:
+		installcpdebian()
+else:
+	installcpdebian()
+
 
 
 
