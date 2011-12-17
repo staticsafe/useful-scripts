@@ -14,10 +14,13 @@ if uid != 0:
 #distrocheck
 if os.path.isfile(/etc/fedora-release) = True:
 	webserverfedora()
+	installcpfedora()
 elif os.path.isfile(/etc/debian_version) = True:
 	webserverdebian()
+	installcpfedora()
 elif os.path.isfile(/etc/arch-release) = True:
 	webserverarch()
+	installcparch()
 else:
 	print "This is script is not supported for your OS, exiting."
 	sys.exit()
@@ -36,4 +39,15 @@ def webserverarch():
 
 
 
-def installcp():
+def installcpdebian():
+
+
+
+def installcpfedora():
+
+
+
+def installcparch():
+
+
+
