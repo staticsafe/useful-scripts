@@ -27,7 +27,7 @@ apt-get upgrade
 #Install webserver packages
 #Needs to be more user-friendly, add links to docs etc.
 
-installwebserver() {
+installwebserverdebian() {
 #Choose webserver
 printf '%s\n' 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, Cherokee'
 read webserver
@@ -59,8 +59,16 @@ elif [[ "$webserver" == "cherokee" || "$webserver" == "Cherokee" ]]; then
 	apt-get install cherokee mysql-server mysql-client php5-mysql openssl
 	printf '%s\n' 'Done! :)'
 else
-	installwebserver
+	installwebserverdebian
 fi
+}
+
+installwebserverfedora() {
+
+}
+
+installwebserverarch() {
+	
 }
 
 
@@ -108,7 +116,13 @@ else
 fi
 }
 
-#Calling functions
+detectOS() {
+if [ -f /etc/fedora-release ]; then
+	installwebserverfedora
+elif [ -f /etc/debian_version ]; then
+	installwebserverdebian
+elif [ -f /etc/arch-release ]; then
+	installwebserverarch
+}
 
-installwebserver
 installcp
