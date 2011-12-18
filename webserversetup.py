@@ -24,8 +24,8 @@ def webserverdebian():
 		userdistro = platform.linux_distribution()
 		if userdistro[0] == "debian":
 			print 'adding nginx repo to sources'
-			addnginxsource = call ("echo 'deb http://nginx.org/packages/debian squeeze nginx' >> /etc/apt/sources.list", shell=True)
-			addnginxkey = call ("wget http://nginx.org/packages/debian/dists/squeeze/Release.gpg && cat Release.gpg | sudo apt-key add - && rm Release.gpg", shell=True)
+			addnginxsource = call ("echo 'deb http://packages.dotdeb.org stable all' >> /etc/apt/sources.list", shell=True)
+			addnginxkey = call ("wget http://www.dotdeb.org/dotdeb.gpg && cat dotdeb.gpg | sudo apt-key add -", shell=True)
 			installnginxdebian = call ("apt-get update && apt-get install --assume-yes nginx php5 php5-fpm php-pear php5-common php5-mcrypt php5-mysql php5-cli php5-gd mysql-server mysql-client", shell=True)
 			print "Stopping services so you can configure them properly"
 			stopservicesnginx = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
