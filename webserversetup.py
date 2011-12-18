@@ -219,7 +219,7 @@ def main():
 	elif userdistro[0] == "debian":
 		webserverdebian()
 		installcpdebian()
-	elif userdistro[0] == "Arch" or os.path.isfile(/etc/arch-release) = True:
+	elif userdistro[0] == "Arch" or os.path.isfile("/etc/arch-release") = True:
 		webserverarch()
 		installcparch()
 	elif userdistro[0] == "Ubuntu":
