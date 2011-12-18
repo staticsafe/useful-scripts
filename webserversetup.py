@@ -77,7 +77,7 @@ else:
 
 
 def installcpdebian():
-print "Do you want to install a control panel (Webmin and/or phpmyAdmin)?"
+	print "Do you want to install a control panel (Webmin and/or phpmyAdmin)?"
 prompt = ">"
 answer = raw_input(prompt)
 if answer == "No" or "no":
