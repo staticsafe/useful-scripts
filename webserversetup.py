@@ -65,8 +65,7 @@ def installcpdebian():
 		sys.exit()
 	else:
 		installcpdebian()
-	else:
-		installcpdebian()
+
 	sys.exit()
 
 def webserverfedora():
