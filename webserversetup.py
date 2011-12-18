@@ -157,6 +157,41 @@ def webserverarch():
 		print "Input is invalid, please retry!"
 		webserverarch()
 
+def installcparch():
+	print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
+	prompt = ">"
+	answer = raw_input(prompt)
+	if answer == "No" or answer == "no":
+		print "Alright then, exiting."
+		sys.exit()
+	elif answer == "Yes" or answer == "yes":
+		print "Do you want to install phpmyAdmin?"
+		promptpma = ">"
+		answerpma = raw_input(promptpma)
+	else:
+		installcpfedora()
+		
+	if answerpma == "Yes" or answerpma == "yes":
+		installcppma = call ("pacman --noconfirm -S phpmyadmin", shell=True)
+	elif answerpma == "No" or answerpma == "no":
+		print "Alright then!"
+	else:
+		installcparch()
+
+	
+	print "Do you want to install Webmin?"
+	promptwebmin = ">"
+	answerwebmin = raw_input(promptwebmin)
+	if answerwebmin == "Yes" or answerwebmin == "yes":
+		installwebmin = call("pacman --noconfirm -S webmin", shell=True)
+	elif answerwebmin == "No" or answerwebmin == "no":
+		print "Alright then, we are done here. Exiting."
+		sys.exit()
+	else:
+		installcparch()
+
+	sys.exit()
+
 def main():
 	#rootcheck
 	uid = os.getuid()
