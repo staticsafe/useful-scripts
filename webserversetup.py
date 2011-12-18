@@ -6,7 +6,8 @@ import sys
 import platform
 
 def webserverdebian():
-	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
+
+print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
 prompt = ">"
 answer = raw_input(prompt)
 if answer == "Apache" or answer == "apache":
@@ -32,7 +33,8 @@ else:
 	webserverdebian()
 
 def installcpdebian():
-	print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
+
+print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
 prompt = ">"
 answer = raw_input(prompt)
 if answer == "No" or "no":
@@ -68,7 +70,8 @@ else:
 sys.exit()
 
 def webserverfedora():
-	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
+
+print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
 prompt = ">"
 answer = raw_input(prompt)
 if answer == "Apache" or answer == "apache":
