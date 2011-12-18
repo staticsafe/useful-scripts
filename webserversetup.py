@@ -94,7 +94,7 @@ def main():
 
 	if userdistro[0] == "Fedora":
 		webserverfedora()
-			installcpfedora()
+		installcpfedora()
 	elif userdistro[0] == "debian":
 		webserverdebian()
 		installcpdebian()
