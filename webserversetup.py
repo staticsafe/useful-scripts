@@ -30,7 +30,6 @@ elif answer == "Cherokee" or answer == "cherokee":
 else:
 	print "Input is invalid, please retry!"
 	webserverdebian()
-sys.exit()
 
 def installcpdebian():
 	print "Do you want to install a control panel (Webmin and/or phpmyAdmin)?"
