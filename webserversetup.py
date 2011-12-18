@@ -44,12 +44,17 @@ def installcpdebian():
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
-		if answerpma == "Yes" or answerpma == "yes":
-			installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
-		elif answerpma == "No" or answerpma == "no":
-			print "Alright then!"
-		else:
-			installcpdebian()
+	else:
+		installcpdebian()
+		
+	if answerpma == "Yes" or answerpma == "yes":
+		installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
+	elif answerpma == "No" or answerpma == "no":
+		print "Alright then!"
+	else:
+		installcpdebian()
+
+	
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
