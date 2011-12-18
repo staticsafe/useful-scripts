@@ -17,7 +17,7 @@ def webserverdebian():
 		stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
 	elif answer == "Lighttpd" or answer == "lighttpd":
 		installprocesslighttpd = call ("apt-get install --assume-yes lighttpd mysql-server mysql-client php5-mysql", shell=True)
-		print "Stopping started LAMP services so you can configure them properly."
+		print "Stopping services so you can configure them properly."
 		stopserviceslighttpd = call ("/etc/init.d/lighttpd stop && /etc/init.d/mysql stop", shell=True)
 		print "Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd."
 	elif answer == "nginx" or answer == "Nginx":
@@ -38,9 +38,20 @@ def webserverdebian():
 		else:
 			webserverdebian()
 	elif answer == "Cherokee" or answer == "cherokee":
-		installprocesscherokee = call ("apt-get install --assume-yes cherokee php5-fpm mysql-server mysql-client php5-mysql openssl", shell=True)
-		print "Stopping services so you can configure them properly"
-		stopservicescherokee = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
+		userdistro2 = platform.linux_distribution()
+		if userdistro2[0] == "debian":
+			print 'adding nginx repo to sources'
+			addnginxsource = call ("echo 'deb http://packages.dotdeb.org stable all' >> /etc/apt/sources.list", shell=True)
+			addnginxkey = call ("wget http://www.dotdeb.org/dotdeb.gpg && cat dotdeb.gpg | sudo apt-key add -", shell=True)
+			installprocesscherokee = call ("apt-get install --assume-yes cherokee php5-fpm mysql-server mysql-client php5-mysql openssl", shell=True)
+			print "Stopping services so you can configure them properly"
+			stopservicescherokee = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
+		elif userdistro2[0] == "Ubuntu":
+			installprocesscherokee2 = call ("apt-get install --assume-yes cherokee php5-fpm mysql-server mysql-client php5-mysql openssl", shell=True)
+			print "Stopping services so you can configure them properly"
+			stopservicescherokee2 = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
+		else:
+			webserverdebian()
 	else:
 		print "Input is invalid, please retry!"
 		webserverdebian()
