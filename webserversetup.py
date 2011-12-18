@@ -5,6 +5,32 @@ from subprocess import call
 import sys
 import platform
 
+def webserverdebian():
+	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
+prompt = ">"
+answer = raw_input(prompt)
+if answer == "Apache" or answer == "apache":
+	installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
+	print "Stopping started LAMP services so you can configure them properly."
+	stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
+elif answer == "Lighttpd" or answer == "lighttpd":
+	installprocesslighttpd = call ("apt-get install --assume-yes lighttpd mysql-server mysql-client php5-mysql", shell=True)
+	print "Stopping started LAMP services so you can configure them properly."
+	stopserviceslighttpd = call ("/etc/init.d/lighttpd stop && /etc/init.d/mysql stop", shell=True)
+	print "Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd."
+elif answer == "nginx" or answer == "Nginx":
+	installprocessnginx = call ("apt-get install --assume-yes nginx php5-cli php5-cgi spawn-fcgi mysql-server mysql-client php5-mysql", shell=True)
+	print "Stopping services so you can configure them properly"
+	stopservicesnginx = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
+	print "Look at http://goo.gl/tQBe7 for instructions on how to configure php-fastcgi"
+elif answer == "Cherokee" or answer == "cherokee":
+	installprocesscherokee = call ("apt-get install --assume-yes cherokee mysql-server mysql-client php5-mysql openssl", shell=True)
+	print "Stopping services so you can configure them properly"
+	stopservicescherokee = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
+else:
+	print "Input is invalid, please retry!"
+	webserverdebian()
+sys.exit()
 
 def installcpdebian():
 	print "Do you want to install a control panel (Webmin and/or phpmyAdmin)?"
@@ -42,35 +68,6 @@ else:
 	installcpdebian()
 sys.exit()
 
-def webserverdebian():
-	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
-prompt = ">"
-answer = raw_input(prompt)
-if answer == "Apache" or answer == "apache":
-	installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
-	print "Stopping started LAMP services so you can configure them properly."
-	stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
-elif answer == "Lighttpd" or answer == "lighttpd":
-	installprocesslighttpd = call ("apt-get install --assume-yes lighttpd mysql-server mysql-client php5-mysql", shell=True)
-	print "Stopping started LAMP services so you can configure them properly."
-	stopserviceslighttpd = call ("/etc/init.d/lighttpd stop && /etc/init.d/mysql stop", shell=True)
-	print "Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd."
-elif answer == "nginx" or answer == "Nginx":
-	installprocessnginx = call ("apt-get install --assume-yes nginx php5-cli php5-cgi spawn-fcgi mysql-server mysql-client php5-mysql", shell=True)
-	print "Stopping services so you can configure them properly"
-	stopservicesnginx = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
-	print "Look at http://goo.gl/tQBe7 for instructions on how to configure php-fastcgi"
-elif answer == "Cherokee" or answer == "cherokee":
-	installprocesscherokee = call ("apt-get install --assume-yes cherokee mysql-server mysql-client php5-mysql openssl", shell=True)
-	print "Stopping services so you can configure them properly"
-	stopservicescherokee = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
-else:
-	print "Input is invalid, please retry!"
-	webserverdebian()
-sys.exit()
-
-
-
 def webserverfedora():
 	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
 prompt = ">"
@@ -101,6 +98,7 @@ if __name__ == "__main__":
 			installcpfedora()
 		elif userdistro[0] == "debian":
 			webserverdebian()
+			installcpdebian()
 		elif userdistro[0] == "Arch":
 			webserverarch()
 			installcparch()
