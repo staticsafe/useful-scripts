@@ -1,8 +1,15 @@
 #!/usr/bin/env python
 
+#Web server setup for Debian/Ubuntu, Fedora, Arch Linux
+#NOTE - DOES NOT CONFIGURE WEBSERVERS
+#Thanks to cafejunkie & BiriBiri for all their help <3.
+
+#Feature to-dos:
+#	-CLI arguments
+#	- 
+
 import os
 from subprocess import call
-import sys
 import platform
 
 #Debian
@@ -63,7 +70,7 @@ def installcpdebian():
 	answer = raw_input(prompt)
 	if answer == "No" or answer == "no":
 		print "Alright then, exiting."
-		sys.exit()
+		raise SystemExit
 	elif answer == "Yes" or answer == "yes":
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
@@ -91,11 +98,11 @@ def installcpdebian():
 		installwebmin = call ("apt-get install --assume-yes webmin", shell=True)
 	elif answerwebmin == "No" or answerwebmin == "no":
 		print "Alright then, we are done here. Exiting."
-		sys.exit()
+		raise SystemExit
 	else:
 		installcpdebian()
 
-	sys.exit()
+	raise SystemExit
 
 # Fedora
 def webserverfedora():
@@ -119,7 +126,7 @@ def installcpfedora():
 	answer = raw_input(prompt)
 	if answer == "No" or answer == "no":
 		print "Alright then, exiting."
-		sys.exit()
+		raise SystemExit
 	elif answer == "Yes" or answer == "yes":
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
@@ -145,11 +152,11 @@ def installcpfedora():
 		installwebmin = call("yum install -y webmin", shell=True)
 	elif answerwebmin == "No" or answerwebmin == "no":
 		print "Alright then, we are done here. Exiting."
-		sys.exit()
+		raise SystemExit
 	else:
 		installcpfedora()
 
-	sys.exit()
+	raise SystemExit
 
 #Arch Linux
 
@@ -186,7 +193,7 @@ def installcparch():
 	answer = raw_input(prompt)
 	if answer == "No" or answer == "no":
 		print "Alright then, exiting."
-		sys.exit()
+		raise SystemExit
 	elif answer == "Yes" or answer == "yes":
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
@@ -209,18 +216,18 @@ def installcparch():
 		installwebmin = call("pacman --noconfirm -S webmin", shell=True)
 	elif answerwebmin == "No" or answerwebmin == "no":
 		print "Alright then, we are done here. Exiting."
-		sys.exit()
+		raise SystemExit
 	else:
 		installcparch()
 
-	sys.exit()
+	raise SystemExit
 
 def main():
 	#rootcheck
 	uid = os.getuid()
 	if uid != 0:
 		print 'This script must be run as root or sudo if you have it!'
-		sys.exit()
+		raise SystemExit
 	#distrocheck
 	userdistro = platform.linux_distribution()
 
@@ -238,7 +245,7 @@ def main():
 		installcpdebian()
 	else:
 		print "This is script is not supported for your distro, exiting."
-		sys.exit()
+		raise SystemExit
 
 if __name__ == "__main__":
 	main()
