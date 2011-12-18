@@ -41,7 +41,7 @@ def installcpdebian():
 		print "Alright then, exiting."
 		sys.exit()
 	elif answer == "Yes" or "yes":
-	print "Do you want to install phpmyAdmin?"
+		print "Do you want to install phpmyAdmin?"
 	promptpma = ">"
 	answerpma = raw_input(promptpma)
 		if answerpma == "Yes" or answerpma == "yes":
