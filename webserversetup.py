@@ -169,7 +169,7 @@ def installcparch():
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
 	else:
-		installcpfedora()
+		installcparch()
 		
 	if answerpma == "Yes" or answerpma == "yes":
 		installcppma = call ("pacman --noconfirm -S phpmyadmin", shell=True)
