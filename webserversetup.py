@@ -113,13 +113,3 @@ else:
 
 
 
-
-
-def installcpfedora():
-
-
-
-def installcparch():
-
-
-
