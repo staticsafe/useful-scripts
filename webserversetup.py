@@ -42,8 +42,8 @@ def installcpdebian():
 		sys.exit()
 	elif answer == "Yes" or "yes":
 		print "Do you want to install phpmyAdmin?"
-	promptpma = ">"
-	answerpma = raw_input(promptpma)
+		promptpma = ">"
+		answerpma = raw_input(promptpma)
 	if answerpma == "Yes" or answerpma == "yes":
 		installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
 	elif answerpma == "No" or answerpma == "no":
