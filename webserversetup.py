@@ -6,30 +6,30 @@ import sys
 import platform
 
 
-def main():
-#rootcheck
-uid = os.getuid()
-if uid != 0:
-	print "This script must be run as root or sudo if you have it!"
-	sys.exit()
-#distrocheck
-userdistro = platform.linux_distribution()
+if __name__ == "__main__":
+		#rootcheck
+		uid = os.getuid()
+		if uid != 0:
+			print "This script must be run as root or sudo if you have it!"
+			sys.exit()
+		#distrocheck
+		userdistro = platform.linux_distribution()
 
-if userdistro[0] == "Fedora":
-	webserverfedora()
-	installcpfedora()
-elif userdistro[0] == "debian":
-	webserverdebian()
-	installcpdebian()
-elif userdistro[0] == "Arch":
-	webserverarch()
-	installcparch()
-elif userdistro[0] == "Ubuntu":
-	webserverdebian()
-	installcpdebian()
-else:
-	print "This is script is not supported for your distro, exiting."
-	sys.exit()
+		if userdistro[0] == "Fedora":
+			webserverfedora()
+			installcpfedora()
+		elif userdistro[0] == "debian":
+			webserverdebian()
+			installcpdebian()
+		elif userdistro[0] == "Arch":
+			webserverarch()
+			installcparch()
+		elif userdistro[0] == "Ubuntu":
+			webserverdebian()
+			installcpdebian()
+		else:
+			print "This is script is not supported for your distro, exiting."
+			sys.exit()
 
 
 
