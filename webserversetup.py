@@ -94,7 +94,7 @@ elif answer == "Yes" or "yes":
 	else:
 		installcpdebian()
 	print "Do you want to install Webmin?"
-	promptwebmin ">"
+	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
 	if answerwebmin == "Yes" or answerwebmin "yes":
 		print "installing Webmin"
