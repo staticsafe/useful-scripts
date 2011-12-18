@@ -37,10 +37,10 @@ def installcpdebian():
 	print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == "No" or "no":
+	if answer == "No" or answer == "no":
 		print "Alright then, exiting."
 		sys.exit()
-	elif answer == "Yes" or "yes":
+	elif answer == "Yes" or answer == "yes":
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
