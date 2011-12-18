@@ -22,7 +22,7 @@ def webserverdebian():
 		print "Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd."
 	elif answer == "nginx" or answer == "Nginx":
 		userdistro = platform.linux_distribution()
-		if userdistro[0] = "debian":
+		if userdistro[0] == "debian":
 			print 'adding nginx repo to sources'
 			addnginxsource = call ("echo 'deb http://nginx.org/packages/debian squeeze nginx' >> /etc/apt/sources.list", shell=True)
 			addnginxkey = call ("wget http://nginx.org/packages/debian/dists/squeeze/Release.gpg && cat Release.gpg | sudo apt-key add - && rm Release.gpg", shell=True)
@@ -30,7 +30,7 @@ def webserverdebian():
 			print "Stopping services so you can configure them properly"
 			stopservicesnginx = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
 			print "Look at http://goo.gl/dyihP for instructions on how to configure nginx"
-		elif userdistro[0] = "Ubuntu":
+		elif userdistro[0] == "Ubuntu":
 			installprocessnginx = call ("apt-get install --assume-yes nginx php5-fpm mysql-server mysql-client php5-mysql", shell=True)
 			print "Stopping services so you can configure them properly"
 			stopservicesnginx2 = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
