@@ -33,6 +33,7 @@ elif answer == "Cherokee" or answer == "cherokee":
 else:
 	print "Input is invalid, please retry!"
 	webserverdebian()
+sys.exit()
 
 
 
