@@ -44,27 +44,27 @@ def installcpdebian():
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
-	if answerpma == "Yes" or answerpma == "yes":
-		installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
-	elif answerpma == "No" or answerpma == "no":
-		print "Alright then!"
-	else:
-		installcpdebian()
+		if answerpma == "Yes" or answerpma == "yes":
+			installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
+		elif answerpma == "No" or answerpma == "no":
+			print "Alright then!"
+		else:
+			installcpdebian()
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
-	if answerwebmin == "Yes" or answerwebmin == "yes":
-		print "installing Webmin"
-		getkey = call ("wget http://www.webmin.com/jcameron-key.asc && apt-key add jcameron-key.asc", shell=True)
-		print "Adding Webmin repo to sources list"
-		addsource = call ("echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list", shell=True)
-		aptupdate = call ("apt-get update", shell=True)
-		installwebmin = call ("apt-get install --assume-yes webmin", shell=True)
-	elif answerwebmin == "No" or answerwebmin == "no":
-		print "Alright then, we are done here. Exiting."
-		sys.exit()
-	else:
-		installcpdebian()
+		if answerwebmin == "Yes" or answerwebmin == "yes":
+			print "installing Webmin"
+			getkey = call ("wget http://www.webmin.com/jcameron-key.asc && apt-key add jcameron-key.asc", shell=True)
+			print "Adding Webmin repo to sources list"
+			addsource = call ("echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list", shell=True)
+			aptupdate = call ("apt-get update", shell=True)
+			installwebmin = call ("apt-get install --assume-yes webmin", shell=True)
+		elif answerwebmin == "No" or answerwebmin == "no":
+			print "Alright then, we are done here. Exiting."
+			sys.exit()
+		else:
+			installcpdebian()
 
 	sys.exit()
 
