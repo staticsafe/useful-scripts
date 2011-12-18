@@ -102,7 +102,6 @@ if __name__ == "__main__":
 			installcpfedora()
 		elif userdistro[0] == "debian":
 			webserverdebian()
-			installcpdebian()
 		elif userdistro[0] == "Arch":
 			webserverarch()
 			installcparch()
