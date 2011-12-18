@@ -5,6 +5,7 @@ from subprocess import call
 import sys
 import platform
 
+#Debian
 def webserverdebian():
 
 	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
@@ -73,6 +74,7 @@ def installcpdebian():
 
 	sys.exit()
 
+# Fedora
 def webserverfedora():
 
 	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
@@ -125,6 +127,35 @@ def installcpfedora():
 		installcpfedora()
 
 	sys.exit()
+
+#Arch Linux
+
+def webserverarch():
+	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
+	prompt = ">"
+	answer = raw_input(prompt)
+	if answer == "Apache" or answer == "apache":
+		installprocessapache = call("pacman --noconfirm -S apache php php-apache mysql", shell=True)
+		print "Stopping started LAMP services so you can configure them properly."
+		stopservicesapache = call ("/etc/rc.d/apache2 stop && /etc/rc.d/mysql stop", shell=True)
+		print "READ THIS WIKI PAGE TO CONFIGURE LAMP PROPERLY - https://wiki.archlinux.org/index.php/LAMP"
+	elif answer == "Lighttpd" or answer == "lighttpd":
+		installprocesslighttpd = call ("pacman --noconfirm -S lighttpd fcgi php php-cgi mysql", shell=True)
+		print "Stopping started LAMP services so you can configure them properly."
+		stopserviceslighttpd = call ("/etc/rc.d/lighttpd stop && /etc/rc.d/mysql stop", shell=True)
+		print "READ THIS WIKI PAGE TO CONFIGURE LIGHTTPD PROPERLY - https://wiki.archlinux.org/index.php/Lighttpd"
+	elif answer == "nginx" or answer == "Nginx":
+		installprocessnginx = call ("pacman --noconfirm -S nginx php-fpm mysql", shell=True)
+		print "Stopping services so you can configure them properly"
+		stopservicesnginx = call ("/etc/rc.d/nginx stop && /etc/rc.d/mysql stop", shell=True)
+		print "READ THIS WIKI PAGE TO CONFIGURE NGINX PROPERLY - https://wiki.archlinux.org/index.php/Nginx"
+	elif answer == "Cherokee" or answer == "cherokee":
+		installprocesscherokee = call ("pacman --noconfirm -S cherokee php-fpm mysql", shell=True)
+		print "Stopping services so you can configure them properly"
+		stopservicescherokee = call ("/etc/rc.d/cherokee stop && /etc/rc.d/mysql stop", shell=True)
+	else:
+		print "Input is invalid, please retry!"
+		webserverarch()
 
 def main():
 	#rootcheck
