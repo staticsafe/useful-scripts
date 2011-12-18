@@ -87,8 +87,8 @@ def main():
 	#rootcheck
 	uid = os.getuid()
 	if uid != 0:
-	print "This script must be run as root or sudo if you have it!"
-	sys.exit()
+		print 'This script must be run as root or sudo if you have it!'
+		sys.exit()
 	#distrocheck
 	userdistro = platform.linux_distribution()
 
