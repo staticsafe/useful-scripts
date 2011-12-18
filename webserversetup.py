@@ -96,7 +96,7 @@ elif answer == "Yes" or "yes":
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
-	if answerwebmin == "Yes" or answerwebmin "yes":
+	if answerwebmin == "Yes" or answerwebmin == "yes":
 		print "installing Webmin"
 		getkey = call ("wget http://www.webmin.com/jcameron-key.asc && apt-key add jcameron-key.asc")
 		print "Adding Webmin repo to sources list"
