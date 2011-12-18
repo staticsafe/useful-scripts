@@ -79,7 +79,7 @@ def webserverfedora():
 	prompt = ">"
 	answer = raw_input(prompt)
 	if answer == "Apache" or answer == "apache":
-		installprocessapache = call ("yum install httpd mysql mysql-server php php-mysql", shell=True)
+		installprocessapache = call ("yum install -y httpd mysql mysql-server php php-mysql", shell=True)
 		print "Stopping services so you can configure them properly"
 		stopservicesapache = call ("/sbin/service httpd stop", shell=True)
 		print "Adding httpd to autostart"
@@ -87,6 +87,44 @@ def webserverfedora():
 	else:
 		print "other webservers are not supported at the moment sorry. Support will be added in the future"
 
+def installcpfedora():
+
+	print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
+	prompt = ">"
+	answer = raw_input(prompt)
+	if answer == "No" or answer == "no":
+		print "Alright then, exiting."
+		sys.exit()
+	elif answer == "Yes" or answer == "yes":
+		print "Do you want to install phpmyAdmin?"
+		promptpma = ">"
+		answerpma = raw_input(promptpma)
+	else:
+		installcpfedora()
+		
+	if answerpma == "Yes" or answerpma == "yes":
+		installcppma = call ("yum install -y phpmyadmin", shell=True)
+	elif answerpma == "No" or answerpma == "no":
+		print "Alright then!"
+	else:
+		installcpfedora()
+
+	
+	print "Do you want to install Webmin?"
+	promptwebmin = ">"
+	answerwebmin = raw_input(promptwebmin)
+	if answerwebmin == "Yes" or answerwebmin == "yes":
+		print "Adding Webmin Repo"
+		getrepofile = call ("wget -O /etc/yum.repos.d/webmin.repo http://dl.dropbox.com/u/2888062/Docs/webmin.repo", shell=True)
+		getkey = call("wget http://www.webmin.com/jcameron-key.asc && rpm --import jcameron-key.asc", shell=True)
+		installwebmin = call("yum install -y webmin")
+	elif answerwebmin == "No" or answerwebmin == "no":
+		print "Alright then, we are done here. Exiting."
+		sys.exit()
+	else:
+		installcpfedora()
+
+	sys.exit()
 
 def main():
 	#rootcheck
