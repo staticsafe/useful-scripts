@@ -50,6 +50,7 @@ def webserverdebian():
 			print 'adding nginx repo to sources'
 			addnginxsource = call ("echo 'deb http://packages.dotdeb.org stable all' >> /etc/apt/sources.list", shell=True)
 			addnginxkey = call ("wget http://www.dotdeb.org/dotdeb.gpg && cat dotdeb.gpg | sudo apt-key add -", shell=True)
+			updatingsources = call ("apt-get update", shell=True)
 			installprocesscherokee = call ("apt-get install --assume-yes cherokee php5-fpm mysql-server mysql-client php5-mysql libcherokee-mod-mysql libcherokee-mod-libssl", shell=True)
 			print "Stopping services so you can configure them properly"
 			stopservicescherokee = call ("/etc/init.d/cherokee stop && /etc/init.d/mysql stop", shell=True)
