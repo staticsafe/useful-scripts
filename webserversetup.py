@@ -6,7 +6,7 @@
 
 #Feature to-dos:
 #	-CLI arguments
-#	- 
+#	-Support more webservers for Fedora 
 
 import os
 from subprocess import call
@@ -148,7 +148,7 @@ def installcpfedora():
 	answerwebmin = raw_input(promptwebmin)
 	if answerwebmin == "Yes" or answerwebmin == "yes":
 		print "Adding Webmin Repo"
-		getrepofile = call ("wget -O /etc/yum.repos.d/webmin.repo http://dl.dropbox.com/u/2888062/Docs/webmin.repo", shell=True)
+		getrepofile = call ("wget -O /etc/yum.repos.d/webmin.repo https://raw.github.com/staticsafe/useful-scripts/master/webmin.repo", shell=True)
 		getkey = call("wget http://www.webmin.com/jcameron-key.asc && rpm --import jcameron-key.asc", shell=True)
 		installwebmin = call("yum install -y webmin", shell=True)
 	elif answerwebmin == "No" or answerwebmin == "no":
