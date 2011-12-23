@@ -6,7 +6,7 @@
 
 #Feature to-dos:
 #	-CLI arguments
-#	- 
+#	-Support more webservers for Fedora 
 
 import os
 from subprocess import call
