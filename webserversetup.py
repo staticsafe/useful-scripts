@@ -11,6 +11,7 @@
 import os
 from subprocess import call
 import platform
+import re
 
 #Debian
 def webserverdebian():
@@ -18,7 +19,7 @@ def webserverdebian():
 	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == "Apache" or answer == "apache":
+	if answer == re.I("apache"):
 		installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
@@ -47,7 +48,7 @@ def webserverdebian():
 	elif answer == "Cherokee" or answer == "cherokee":
 		userdistro2 = platform.linux_distribution()
 		if userdistro2[0] == "debian":
-			print 'adding nginx repo to sources'
+			print 'adding cherokee repo to sources'
 			addnginxsource = call ("echo 'deb http://packages.dotdeb.org stable all' >> /etc/apt/sources.list", shell=True)
 			addnginxkey = call ("wget http://www.dotdeb.org/dotdeb.gpg && cat dotdeb.gpg | sudo apt-key add -", shell=True)
 			updatingsources = call ("apt-get update", shell=True)
@@ -117,8 +118,8 @@ def webserverfedora():
 		stopservicesapache = call ("/sbin/service httpd stop", shell=True)
 		print "Adding httpd to autostart"
 		autostartapache = call ("/sbin/chkconfig httpd on", shell=True)
-	else:
-		print "other webservers are not supported at the moment sorry. Support will be added in the future"
+	elif answer == "Lighttpd" or answer == "lighttpd":
+		
 
 def installcpfedora():
 
@@ -245,7 +246,7 @@ def main():
 		webserverdebian()
 		installcpdebian()
 	else:
-		print "This is script is not supported for your distro, exiting."
+		print "This script is not supported for your distro, exiting."
 		raise SystemExit
 
 if __name__ == "__main__":
