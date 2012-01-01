@@ -20,17 +20,20 @@ def webserverdebian():
 	prompt = ">"
 	answer = raw_input(prompt)
 	regexa = re.search("apache", answer, re.M|re.I)
+	regexl = re.search("lighttpd", answer, re.M|re.I)
+	regexn = re.search("nginx", answer, re.M|re.I)
+	regexc = re.search("cherokee", answer, re.M|re.I)
 	print regexa
 	if regexa:
 		installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
-	elif answer == "Lighttpd" or answer == "lighttpd":
+	elif regexl:
 		installprocesslighttpd = call ("apt-get install --assume-yes lighttpd mysql-server mysql-client php5-mysql", shell=True)
 		print "Stopping services so you can configure them properly."
 		stopserviceslighttpd = call ("/etc/init.d/lighttpd stop && /etc/init.d/mysql stop", shell=True)
 		print "Look at http://goo.gl/i4NlE for instructions on how to configure lighttpd."
-	elif answer == "nginx" or answer == "Nginx":
+	elif regexn:
 		userdistro = platform.linux_distribution()
 		if userdistro[0] == "debian":
 			print 'adding nginx repo to sources'
@@ -47,7 +50,7 @@ def webserverdebian():
 			print "Look at http://goo.gl/dyihP for instructions on how to configure nginx"
 		else:
 			webserverdebian()
-	elif answer == "Cherokee" or answer == "cherokee":
+	elif regexc:
 		userdistro2 = platform.linux_distribution()
 		if userdistro2[0] == "debian":
 			print 'adding cherokee repo to sources'
