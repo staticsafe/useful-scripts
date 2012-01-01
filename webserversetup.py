@@ -19,7 +19,7 @@ def webserverdebian():
 	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == re.match(r'*', apache, re.I):
+	if answer == re.match(r'apache', answer, re.I):
 		installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
