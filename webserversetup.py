@@ -20,7 +20,7 @@ def webserverdebian():
 	prompt = ">"
 	answer = raw_input(prompt)
 	regex = re.compile(answer, re.I)
-	if answer == regex.match("apache"):
+	if regex == regex.match("apache"):
 		installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopservicesapache = call ("/etc/init.d/apache2 stop && /etc/init.d/mysql stop", shell=True)
