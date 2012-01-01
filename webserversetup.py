@@ -119,6 +119,9 @@ def webserverfedora():
 		print "Adding httpd to autostart"
 		autostartapache = call ("/sbin/chkconfig httpd on", shell=True)
 	elif answer == "Lighttpd" or answer == "lighttpd":
+		print "lolwait"
+	else:
+		webserverfedora()
 		
 
 def installcpfedora():
