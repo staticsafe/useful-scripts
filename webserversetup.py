@@ -8,6 +8,9 @@
 #	-CLI arguments
 #	-Support more webservers for Fedora 
 
+# Script broken or want to offer some suggestions/constructive criticism?
+# I can be found in #geeks on irc.entropynet.net!
+
 import os
 from subprocess import call
 import platform
@@ -19,11 +22,13 @@ def webserverdebian():
 	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
 	prompt = ">"
 	answer = raw_input(prompt)
+
+	#regex
 	regexa = re.search("apache", answer, re.M|re.I)
 	regexl = re.search("lighttpd", answer, re.M|re.I)
 	regexn = re.search("nginx", answer, re.M|re.I)
 	regexc = re.search("cherokee", answer, re.M|re.I)
-	print regexa
+
 	if regexa:
 		installprocessapache = call("apt-get install --assume-yes mysql-server mysql-client apache2 apache2-doc php5 php5-mysql libapache2-mod-php5", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
@@ -75,24 +80,27 @@ def installcpdebian():
 	print 'Do you want to install a control panel (Webmin and/or phpmyAdmin)?'
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == "No" or answer == "no":
+
+	#regex
+	regexy = re.search("yes", answer, re.M|re.I)
+	regexn = re.search("no", answer, re.M|re.I)
+
+	if regexn:
 		print "Alright then, exiting."
 		raise SystemExit
-	elif answer == "Yes" or answer == "yes":
+	elif regexy:
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
-	else:
-		installcpdebian()
-		
-	if answerpma == "Yes" or answerpma == "yes":
-		installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
-	elif answerpma == "No" or answerpma == "no":
-		print "Alright then!"
+		if answerpma == "Yes" or answerpma == "yes":
+			installcppma = call ("apt-get install --assume-yes phpmyadmin", shell=True)
+		elif answerpma == "No" or answerpma == "no":
+			print "Alright then!"
+		else:
+			installcpdebian()
 	else:
 		installcpdebian()
 
-	
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
@@ -117,13 +125,20 @@ def webserverfedora():
 	print "Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee"
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == "Apache" or answer == "apache":
+
+	#regex
+	regexa = re.search("apache", answer, re.M|re.I)
+	regexl = re.search("lighttpd", answer, re.M|re.I)
+	regexn = re.search("nginx", answer, re.M|re.I)
+	regexc = re.search("cherokee", answer, re.M|re.I)
+
+	if regexa:
 		installprocessapache = call ("yum install -y httpd mysql mysql-server php php-mysql", shell=True)
 		print "Stopping services so you can configure them properly"
 		stopservicesapache = call ("/sbin/service httpd stop", shell=True)
 		print "Adding httpd to autostart"
 		autostartapache = call ("/sbin/chkconfig httpd on", shell=True)
-	elif answer == "Lighttpd" or answer == "lighttpd":
+	elif regexl:
 		print "lolwait"
 	else:
 		webserverfedora()
@@ -174,22 +189,29 @@ def webserverarch():
 	print 'Choose a webserver to install, your choices are Apache, Lightttpd, nginx, or Cherokee'
 	prompt = ">"
 	answer = raw_input(prompt)
-	if answer == "Apache" or answer == "apache":
+
+	#regex
+	regexa = re.search("apache", answer, re.M|re.I)
+	regexl = re.search("lighttpd", answer, re.M|re.I)
+	regexn = re.search("nginx", answer, re.M|re.I)
+	regexc = re.search("cherokee", answer, re.M|re.I)
+
+	if regexa:
 		installprocessapache = call("pacman --noconfirm -S apache php php-apache mysql", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopservicesapache = call ("/etc/rc.d/apache2 stop && /etc/rc.d/mysql stop", shell=True)
 		print "READ THIS WIKI PAGE TO CONFIGURE LAMP PROPERLY - https://wiki.archlinux.org/index.php/LAMP"
-	elif answer == "Lighttpd" or answer == "lighttpd":
+	elif regexl:
 		installprocesslighttpd = call ("pacman --noconfirm -S lighttpd fcgi php php-cgi mysql", shell=True)
 		print "Stopping started LAMP services so you can configure them properly."
 		stopserviceslighttpd = call ("/etc/rc.d/lighttpd stop && /etc/rc.d/mysql stop", shell=True)
 		print "READ THIS WIKI PAGE TO CONFIGURE LIGHTTPD PROPERLY - https://wiki.archlinux.org/index.php/Lighttpd"
-	elif answer == "nginx" or answer == "Nginx":
+	elif regexn:
 		installprocessnginx = call ("pacman --noconfirm -S nginx php-fpm mysql", shell=True)
 		print "Stopping services so you can configure them properly"
 		stopservicesnginx = call ("/etc/rc.d/nginx stop && /etc/rc.d/mysql stop", shell=True)
 		print "READ THIS WIKI PAGE TO CONFIGURE NGINX PROPERLY - https://wiki.archlinux.org/index.php/Nginx"
-	elif answer == "Cherokee" or answer == "cherokee":
+	elif regexc:
 		installprocesscherokee = call ("pacman --noconfirm -S cherokee php-fpm mysql", shell=True)
 		print "Stopping services so you can configure them properly"
 		stopservicescherokee = call ("/etc/rc.d/cherokee stop && /etc/rc.d/mysql stop", shell=True)
