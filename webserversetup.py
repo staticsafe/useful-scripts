@@ -135,11 +135,21 @@ def webserverfedora():
 	if regexa:
 		installprocessapache = call ("yum install -y httpd mysql mysql-server php php-mysql", shell=True)
 		print "Stopping services so you can configure them properly"
-		stopservicesapache = call ("/sbin/service httpd stop", shell=True)
+		stopservicesapache = call ("service httpd stop && service mysqld stop", shell=True)
 		print "Adding httpd to autostart"
-		autostartapache = call ("/sbin/chkconfig httpd on", shell=True)
+		autostartapache = call ("chkconfig httpd on", shell=True)
 	elif regexl:
-		print "lolwait"
+		installprocesslighttpd = call ("yum install -y lighttpd mysql mysql-server php-fpm php-mysql", shell=True)
+		print "Stopping services so you can configure them properly"
+		stopserviceslighttpd = call ("service lighttpd stop && service mysqld stop", shell=True)
+	elif regexn:
+		installprocessnginx = call ("yum install -y nginx mysql mysql-server php-fpm php-mysql", shell=True)
+		print "Stopping services so you can configure them properly"
+		stopservicesnginx = call ("service lighttpd stop && service mysqld stop")
+	elif regexc:
+		instsllprocesscherokee = call ("yum install -y cherokee mysql mysql-server php-fpm php-mysql", shell=True)
+		print "Stopping services so you can configure them properly"
+		
 	else:
 		webserverfedora()
 		
