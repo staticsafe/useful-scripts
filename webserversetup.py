@@ -156,17 +156,15 @@ def installcpfedora():
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
-	else:
-		installcpfedora()
-		
-	if answerpma == "Yes" or answerpma == "yes":
-		installcppma = call ("yum install -y phpmyadmin", shell=True)
-	elif answerpma == "No" or answerpma == "no":
-		print "Alright then!"
+		if answerpma == "Yes" or answerpma == "yes":
+			installcppma = call ("yum install -y phpmyadmin", shell=True)
+		elif answerpma == "No" or answerpma == "no":
+			print "Alright then!"
+		else:
+			installcpfedora()
 	else:
 		installcpfedora()
 
-	
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
@@ -230,17 +228,15 @@ def installcparch():
 		print "Do you want to install phpmyAdmin?"
 		promptpma = ">"
 		answerpma = raw_input(promptpma)
-	else:
-		installcparch()
-		
-	if answerpma == "Yes" or answerpma == "yes":
-		installcppma = call ("pacman --noconfirm -S phpmyadmin", shell=True)
-	elif answerpma == "No" or answerpma == "no":
-		print "Alright then!"
+		if answerpma == "Yes" or answerpma == "yes":
+			installcppma = call ("pacman --noconfirm -S phpmyadmin", shell=True)
+		elif answerpma == "No" or answerpma == "no":
+			print "Alright then!"
+		else:
+			installcparch()
 	else:
 		installcparch()
 
-	
 	print "Do you want to install Webmin?"
 	promptwebmin = ">"
 	answerwebmin = raw_input(promptwebmin)
