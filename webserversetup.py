@@ -8,6 +8,9 @@
 #	-CLI arguments
 #	-Support more webservers for Fedora 
 
+#Issues:
+#	- No Python 3 support! Arch Linux users please use python2
+
 # Script broken or want to offer some suggestions/constructive criticism?
 # I can be found in #geeks on irc.entropynet.net!
 
