@@ -1,6 +1,8 @@
 #!/bin/bash
 #Sets up a fully working development environment for Caffeine Linux developers on Debian based systems
 
+#WARNING : THIS SCRIPT IS NOW OBSOLETE! Please refer to the caffeine-linux git repo for the current version!
+
 die() {
 printf '%s\n' "$@" >&2
 exit 1
