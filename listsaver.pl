@@ -16,3 +16,16 @@ $VERSION = "0.1";
 	changed		=>	'NA',
 );
 
+# USAGE: /listsaver [<server>]
+sub cmd_listsaver {
+	my ($data, $server, $witem) = @_;
+	my $filename = $ENV{HOME} . '/.irssi/channel_list';
+	#if (!$server || !$server->{connected}) {
+	#	Irssi::print("Not connected to server");
+	#	return;
+	#}
+
+	$server->redirect_event("list", 1, $data, -1, undef, {"event 322" => "redir list", "" => "event empty"});
+	$server->send_raw("LIST" :$data)
+}
+Irssi::command_bind('listsaver', 'cmd_listsaver');
