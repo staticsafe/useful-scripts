@@ -47,7 +47,7 @@ def webserverdebian():
 			print 'adding nginx repo to sources'
 			addnginxsource = call ("echo 'deb http://packages.dotdeb.org stable all' >> /etc/apt/sources.list", shell=True)
 			addnginxkey = call ("wget http://www.dotdeb.org/dotdeb.gpg && cat dotdeb.gpg | sudo apt-key add -", shell=True)
-			installnginxdebian = call ("apt-get update && apt-get install --assume-yes nginx php5 php5-fpm php-pear php5-common php5-mcrypt php5-mysql php5-cli php5-gd mysql-server mysql-client", shell=True)
+			installnginxdebian = call ("apt-get update && apt-get install --assume-yes nginx php5-fpm php-pear php5-common php5-mcrypt php5-mysql php5-cli php5-gd mysql-server mysql-client", shell=True)
 			print "Stopping services so you can configure them properly"
 			stopservicesnginx = call ("/etc/init.d/nginx stop && /etc/init.d/mysql stop", shell=True)
 			print "Look at http://goo.gl/dyihP for instructions on how to configure nginx"
