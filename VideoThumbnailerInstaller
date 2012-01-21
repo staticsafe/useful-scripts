@@ -23,7 +23,7 @@ esac
 chmod a+x ~/bin/mtn
 
 # Get font
-wget -O ~/bin/ http://fractal.csie.org/~eric/Terminus.ttf
+wget -O ~/bin/Terminus.ttf http://files.ax86.net/terminus-ttf/4.36/TerminusMedium-4.36.ttf
 
 # Create mkscr bash script
 cat > ~/bin/mkscr << 'EOF'
