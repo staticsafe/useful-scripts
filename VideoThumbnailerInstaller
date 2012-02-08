@@ -4,6 +4,7 @@
 
 arch=$(uname -m)
 
+
 die() {
 	printf '%s\n' "$@" >&2
 	exit 1
@@ -14,7 +15,16 @@ if [[ ! -d ~/bin ]]; then
 	mkdir ~/bin || die 'Failed to create ~/bin.'
 fi
 
-printf '%s\n' 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+
+if [[ "$SHELL" == "/usr/bin/zsh" || "$SHELL" == "/bin/zsh" ]]
+    printf '%s\n' 'export PATH=$HOME/bin:$PATH' >> ~/.zshenv
+elif [[ "$SHELL" == "/bin/bash" ]]
+    printf '%s\n' 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+else
+    printf '%s\n' 'The script does not support your default shell. Please add $HOME/bin to your path manually'
+fi
+
+
 case "${arch}" in
 	i686|i586) wget -O ~/bin/mtn http://dl.dropbox.com/u/34659045/mtn-32 || die 'Failed to download mtn.' ;;
 	x86_64) wget -O ~/bin/mtn http://dl.dropbox.com/u/34659045/mtn-64 || die 'Failed to download mtn.' ;;
