@@ -75,8 +75,5 @@ def main():
 	filemove()
 	dbmove()
 
-	print srcusername
-	print destusername
-
 if __name__ == "__main__":
 	main()
