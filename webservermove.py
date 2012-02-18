@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # This script helps in the moving process of two remote (script run from srcserver) web servers (files, databases)
+# I realize this script could be written in a better way but Fabric is annoying and cba coding using it.
 
 import ConfigParser, os, requests
 from subprocess import call
@@ -63,10 +64,11 @@ def filemove():
 	scpcall = call("scp -r " + srcfiledir + " " + destusername + "@" + desthostname + ":" + destfiledir, shell=True)
 
 def dbmove():
-	dbdump = call ("mysqldump --opt -Q -uroot -p" + srcmysqlrootpw + " " + srcdbname + " " + ">" + currentdir, + srcdbname +".sql" shell=True)
+	print "Dumping database now!"
+	dbdump = call ("mysqldump --opt -Q -uroot -p" + srcmysqlrootpw + " " + srcdbname + " " + ">" + " " + currentdir, + srcdbname + ".sql" shell=True)
 	scpcall = call ("scp " + currentdir + srcdbname + ".sql" + " " + destusername + "@" + desthostname + ":" + destdbdir, shell=True)
 
-def filedirchecks():
+def checks():
 	if os.path.isdir(srcfiledir) == False:
 		print "Your source file dir does not exist! Exiting."
 		raise SystemExit
@@ -82,7 +84,7 @@ def main():
 		print "Config file exists, using it!"
 
 	setvalues()
-	filedirchecks()
+	checks()
 	dbmove()
 
 if __name__ == "__main__":
