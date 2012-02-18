@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# This script helps in the moving process of web servers (files, databases)
+# This script helps in the moving process of two remote (script run from srcserver) web servers (files, databases)
 
 import ConfigParser, os, requests
 from subprocess import call
@@ -42,8 +42,8 @@ def setvalues():
 	srcconfig.read('webservermove.ini')
 
 	srcusername = srcconfig.get('SOURCEHOST', 'srcusername')
-	srcpassword = srcconfig.get('SOURCEHOST', 'srcpassword')
-	srchostname = srcconfig.get('SOURCEHOST', 'srchostname')
+	#srcpassword = srcconfig.get('SOURCEHOST', 'srcpassword')
+	#srchostname = srcconfig.get('SOURCEHOST', 'srchostname')
 	srcfiledir = srcconfig.get('SOURCEHOST', 'srcfiledir')
 	srcdbname = srcconfig.get('SOURCEHOST', 'srcdbname')
 	srcmysqlrootpw = srcconfig.get('SOURCEHOST', 'srcmysqlrootpw')
@@ -57,11 +57,21 @@ def setvalues():
 	destfiledir = destconfig.get('DESTHOST', 'destfiledir')
 	destdbdir = destconfig.get('DESTHOST', 'destdbdir')
 
+
 def filemove():
-	print "placeholder"
+	print "Mirroring your files now!"
+	scpcall = call("scp -r " + srcfiledir + " " + destusername + "@" + desthostname + ":" + destfiledir, shell=True)
 
 def dbmove():
-	print "placeholder"
+	dbdump = call ("mysqldump --opt -Q -uroot -p" + srcmysqlrootpw + " " + srcdbname + " " + ">" + currentdir, + srcdbname +".sql" shell=True)
+	scpcall = call ("scp " + currentdir + srcdbname + ".sql" + " " + destusername + "@" + desthostname + ":" + destdbdir, shell=True)
+
+def filedirchecks():
+	if os.path.isdir(srcfiledir) == False:
+		print "Your source file dir does not exist! Exiting."
+		raise SystemExit
+	else:
+		filemove()	
 
 def main():
 	# check existence of config file
@@ -72,7 +82,7 @@ def main():
 		print "Config file exists, using it!"
 
 	setvalues()
-	filemove()
+	filedirchecks()
 	dbmove()
 
 if __name__ == "__main__":
