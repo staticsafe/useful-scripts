@@ -64,7 +64,7 @@ def filemove():
 	scpcall = call("scp -r " + srcfiledir + " " + destusername + "@" + desthostname + ":" + destfiledir, shell=True)
 
 def dbmove():
-	print "Dumping database now!";
+	print "Dumping database now!"
 	dbdump = call ("mysqldump --opt -Q -uroot -p" + srcmysqlrootpw + " " + srcdbname + " " + ">" + " " + currentdir, + srcdbname + ".sql" shell=True)
 	scpcall = call ("scp " + currentdir + srcdbname + ".sql" + " " + destusername + "@" + desthostname + ":" + destdbdir, shell=True)
 
