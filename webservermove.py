@@ -84,7 +84,7 @@ def main():
 		print "Config file exists, using it!"
 
 	setvalues()
-	checks()
+	filemove()
 	dbmove()
 
 if __name__ == "__main__":
