@@ -18,7 +18,7 @@ fi
 
 if [[ "$SHELL" == "/usr/bin/zsh" || "$SHELL" == "/bin/zsh" ]]; then
     printf '%s\n' 'export PATH=$HOME/bin:$PATH' >> ~/.zshenv
-elif [[ "$SHELL" == "/bin/bash" ]]
+elif [[ "$SHELL" == "/bin/bash" ]]; then
     printf '%s\n' 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 else
     printf '%s\n' 'The script does not support your default shell. Please add $HOME/bin to your path manually'
