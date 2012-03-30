@@ -16,7 +16,7 @@ if [[ ! -d ~/bin ]]; then
 fi
 
 
-if [[ "$SHELL" == "/usr/bin/zsh" || "$SHELL" == "/bin/zsh" ]]
+if [[ "$SHELL" == "/usr/bin/zsh" || "$SHELL" == "/bin/zsh" ]]; then
     printf '%s\n' 'export PATH=$HOME/bin:$PATH' >> ~/.zshenv
 elif [[ "$SHELL" == "/bin/bash" ]]
     printf '%s\n' 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
