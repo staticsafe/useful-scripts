@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # written by staticsafe, ze, jayms, chris and ckpro
 # fixed various nasty things (thanks neurolysis)
 
@@ -37,7 +37,7 @@ wget -O ~/bin/Terminus.ttf http://files.ax86.net/terminus-ttf/4.36/TerminusMediu
 
 # Create mkscr bash script
 cat > ~/bin/mkscr << 'EOF'
-#!/bin/bash
+#!/usr/bin/env bash
 for arg; do
 	mtn -f ~/bin/Terminus.ttf -c 4 -r 8 -w 1280 -b 0.6 -D6 -T "Screens for hey.fux0r.eu" "${arg}"
 done
