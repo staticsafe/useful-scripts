@@ -8,7 +8,7 @@ if ( -e "./access.list" ) {
     open( LIST, "< ./access.list" );
 }
 else {
-    die "access.list does not exist, terminating."
+    die "access.list does not exist, terminating.\n"
 }
 
 while( <LIST> ){
