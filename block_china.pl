@@ -1,10 +1,15 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 
 # Originally written by cafejunkie, modified by staticsafe
 
 my @RULES = ( );
 
-open( LIST, "< ./access.list" );
+if ( -e "./access.list" ) {
+    open( LIST, "< ./access.list" );
+}
+else {
+    die "access.list does not exist, terminating."
+}
 
 while( <LIST> ){
         next if $_ =~ /^\#/ || $_ =~ /^$/;
