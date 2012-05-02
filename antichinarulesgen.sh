@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Name : antichinarulesgen.sh
-# Purpose : Generates a nice little anti-China rules list that can be used with iptables-restore or cafejunkie's block_china.pl
+# Purpose : Generates a nice little anti-China rules list that can be used with cafejunkie's block_china.pl
 
 # a die function as always
 die() {
