@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Small script to flush Memcached
 
 

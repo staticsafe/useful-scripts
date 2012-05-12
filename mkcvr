@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Creates a image from a single frame of a video file
 
 if [ $# != 1 ]; then
