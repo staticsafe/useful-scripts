@@ -21,8 +21,8 @@ subject=""
 
 # Do the stuff
 
-$rarbinary a "$uploaddir/{$0}" -v10m -m0 $0
-par2create -r10 -n7 $0 $uploaddir/*.rar*
+$rarbinary a "$uploaddir/{$1}" -v10m -m0 $1
+par2create -r10 -n7 $1 $uploaddir/*.rar*
 $newspostbinary -i $server -u $username -p $password -f $email -n $newsgroup -y -s $subject "$uploaddir/*.part*" "$uploaddir/*.par*"
 
 
