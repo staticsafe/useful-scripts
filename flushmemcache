@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 #Small script to flush Memcached
 
+memcachehost="localhost"
+memcacheport="11211"
 
 if pgrep memcached &> /dev/null; then
-    nc -w 3 localhost 11211 <<< flush_all
+    nc -w 3 $memcachehost $memcacheport <<< flush_all
     printf '%s\n' 'Memcached cache was flushed! :)'
 else
     printf '%s\n' 'Memcached is not running!'
