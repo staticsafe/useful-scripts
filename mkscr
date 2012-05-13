@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-while [ $# -gt 0 ]; do
-mtn -f ~/Terminus.ttf -c 4 -r 8 -w 1280 -b 0.6 -D6 -T "Screens for site" "$1"
-shift
+for arg; do
+	mtn -f ~/bin/Terminus.ttf -c 4 -r 8 -w 1280 -b 0.6 -D6 -T "Screens for hey.fux0r.eu" "${arg}"
 done
