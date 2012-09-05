@@ -22,5 +22,5 @@ fi
 cat chinacidr.txt | sed -e '1,4d;s/China//;s/^/INPUT -s /;s/^\(.*\) .*/\1/;s/$/-p tcp -j DROP/' > access.list
 
 # add some rules for psad, you may omit this if you don't need it
-printf '%s\n' 'INPUT -j LOG' >> access.list
-printf '%s\n' 'FORWARD -j LOG' >> access.list
+#printf '%s\n' 'INPUT -j LOG' >> access.list
+#printf '%s\n' 'FORWARD -j LOG' >> access.list
