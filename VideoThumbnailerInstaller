@@ -35,10 +35,10 @@ EOF
 chmod a+x ~/bin/mtn
 chmod a+x ~/bin/mkscr
 
-if [[ "$SHELL" == "/usr/bin/zsh" || "$SHELL" == "/bin/zsh" ]]; then
+if [[ "$SHELL" == $(command -v zsh) ]]; then
     printf '%s\n' 'export PATH=$HOME/bin:$PATH' >> ~/.zshenv
     exec zsh
-elif [[ "$SHELL" == "/bin/bash" ]]; then
+elif [[ "$SHELL" == $(command -v bash) ]]; then
     printf '%s\n' 'PATH="$HOME/bin:$PATH"' >> ~/.bashrc
     exec bash
 else
