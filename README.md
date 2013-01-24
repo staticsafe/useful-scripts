@@ -13,6 +13,3 @@ Reads access.list created by antichinarulesgen and implements rules
 
 ### flushmemcache
 A script to flush memcache, designed to be used as a cron job.
-
-### webserversetup
-Installs LAMP/LEMP packages for various distros.
